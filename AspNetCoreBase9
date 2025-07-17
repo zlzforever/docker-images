@@ -1,0 +1,5 @@
+FROM zlzforever/debian:12
+ENV ASPNETCORE_URLS http://0.0.0.0:8080
+ENV LANG zh_CN.UTF-8
+RUN apt-get update && \
+    apt-get install -y curl icu-data-full icu-libs libatomic tzdata && apt-get clean

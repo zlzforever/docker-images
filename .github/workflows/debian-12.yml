@@ -1,0 +1,22 @@
+name: Debian12
+
+on:
+  push:
+    paths: [ "Debian12" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login docker regsitry
+      run: docker login -u ${{ secrets.DOCKER_USER }} -p  ${{ secrets.DOCKER_USER_PASSWORD }}
+    - name: Build the Docker image
+      run: docker build . --file Debian12 --tag zlzforever/debian:12
+    - name: Publish the Docker image
+      run: docker push zlzforever/debian:12
