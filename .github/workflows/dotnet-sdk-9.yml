@@ -1,0 +1,22 @@
+name: DotnetSDK9
+
+on:
+  push:
+    paths: [ "DotnetSDK9" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login docker regsitry
+      run: docker login -u ${{ secrets.DOCKER_USER }} -p  ${{ secrets.DOCKER_USER_PASSWORD }}
+    - name: Build the Docker image
+      run: docker build . --file DotnetSDK9 --tag zlzforever/dotnetsdk:9
+    - name: Publish the Docker image
+      run: docker push zlzforever/dotnetsdk:9
