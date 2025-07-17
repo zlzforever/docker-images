@@ -1,0 +1,8 @@
+FROM debian:12
+
+ENV LANG zh_CN.UTF-8
+RUN apt-get update && apt install -y ca-certificates && update-ca-certificates && apt-get clean
+RUN mv /etc/apt/sources.list.d/debian.sources /etc/ && \
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free" > /etc/apt/sources.list && \
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free" >> /etc/apt/sources.list
